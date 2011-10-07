@@ -1,0 +1,41 @@
+@CHARSET "utf-8";
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+	text-align: center;
+	background-color: #E6E6FA;
+}
+
+#container {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+	margin:0px auto;
+    position: relative;
+
+	width:					1024px;
+	margin:					0px auto;
+	text-align:				left;
+}
+
+#main{
+    padding-bottom:30px;
+}
+
+#footer{
+	text-align:right;
+	background-color: black;
+	color: white;
+ 	position: absolute;
+    bottom:0px;
+    width:100%;
+	font-size: 12px;
+}
+
+div#subnav {
+	position:				absolute;
+	right:					0px;
+	top:					0px;
+}
