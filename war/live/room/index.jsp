@@ -125,9 +125,7 @@
 	}
 
 	function leaveRoom() {
-		socket.close();
-		socket = null;
-		location.href = "/channel/leaveRoom?userListName=roomUserList&userId=" + userId + "&redirect=/live";
+		location.href = "/live";
 	}
 
 
@@ -136,6 +134,10 @@
 
 		// 1文字未満の場合は処理終了
 		if (text.length < 1) {
+			return;
+		}
+		if (text.length > 99) {
+			alert('文字数が多すぎます');
 			return;
 		}
 
@@ -217,7 +219,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input id="message" type="text" name="text" size="50" maxlength="20" onkeypress="keyEvent(event.keyCode)"/>
+					<input id="message" type="text" name="text" size="50" maxlength="99" onkeypress="keyEvent(event.keyCode)"/>
 					<button onclick="send()">SEND</button>
 				</td>
 			</tr>

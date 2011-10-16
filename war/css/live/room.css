@@ -11,6 +11,7 @@ div#chat {
 
 div#messageListDiv {
 	height: 350px;
+	width: 350px;
 	overflow: auto;
 }
 
