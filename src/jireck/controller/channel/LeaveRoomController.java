@@ -11,11 +11,10 @@ import org.slim3.memcache.Memcache;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions.Builder;
 
-public class DisconnectController extends Controller {
+public class LeaveRoomController extends Controller {
 
     @Override
     public Navigation run() throws Exception {
-
 
         String userListName = (String) request.getAttribute("userListName");
 
@@ -29,9 +28,9 @@ public class DisconnectController extends Controller {
 
         Memcache.put(userListName, userList);
 
-
         QueueFactory.getDefaultQueue().add(Builder.withUrl("/channel/taskqueue/notifyUserList").param("userListName", userListName));
 
-        return null;
+        return redirect((String) request.getAttribute("redirect"));
+
     }
 }

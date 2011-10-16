@@ -29,7 +29,7 @@ public class ChatService {
 
         ConnectedUser user = new ConnectedUser();
         user.setUserId(userId);
-        user.setToken(getToken(userId));
+        setToken(user);
 
         user.setUserName((String) input.get("username"));
 
@@ -37,17 +37,16 @@ public class ChatService {
     }
 
     /**
-     * トークンの取得.
-     * @param userId
-     * @return トークン（生存時間2時間） TODO トークン（生存時間2時間）
+     * トークンを生成し、ユーザーにセット.
+     * @param user
      */
-    private String getToken(String userId){
+    public void setToken(ConnectedUser user){
         ChannelService channelService = ChannelServiceFactory.getChannelService();
 
         // ゲームのパラメータとかユーザIdを元にして一意なIdを作りましょう
         // ここでは簡易化のために、userIdをそのまま使っています
-        String token = channelService.createChannel(userId);
-        return token;
+        String token = channelService.createChannel(user.getUserId()); // トークン（生存時間2時間）
+        user.setToken(token);
     }
 
     /**
@@ -114,4 +113,5 @@ public class ChatService {
             channelService.sendMessage(new ChannelMessage(user.getUserId(),  "uul" + nameCSV.toString()));
         }
     }
+
 }

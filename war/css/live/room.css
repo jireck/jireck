@@ -1,0 +1,20 @@
+@CHARSET "utf-8";
+
+div#wmp {
+	float: left;
+}
+
+div#chat {
+	float: right;
+	height: 500px;
+}
+
+div#messageListDiv {
+	height: 350px;
+	overflow: auto;
+}
+
+div#userListDiv {
+	height: 100px;
+	overflow: auto;
+}

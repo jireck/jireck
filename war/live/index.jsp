@@ -14,5 +14,17 @@
 <li><a href="#" onclick="roomIn('', '')">Jireck's Room</a></li>
 </ul>
 
+	<!--<div id="youtube">
+		<object width="425" height="355">
+		  <param name="movie" value="http://www.youtube.com/v/kpDtVxWnvvA?rel=1&color1=0x2b405b&
+		    color2=0x6b8ab6&border=1&fs=1"></param>
+		  <param name="allowFullScreen" value="true"></param>
+		  <embed src="http://www.youtube.com/v/kpDtVxWnvvA?rel=1&color1=0x2b405b&color2=0x6b8ab6&border=1&fs=1"
+		    type="application/x-shockwave-flash"
+		    width="425" height="355"
+		    allowfullscreen="true"></embed>
+		</object>
+	</div>-->
+
 </body>
 </html>

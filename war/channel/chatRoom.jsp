@@ -95,7 +95,7 @@ function disconnect() {
 //	isConnected = false;
 //	token = null;
 //	userId = null;
-	location.href = "/channel/disconnect?userListName=userList&userId=" + userId + "&redirect=/channel";
+	location.href = "/channel/leaveRoom?userListName=userList&userId=" + userId + "&redirect=/channel";
 }
 
 

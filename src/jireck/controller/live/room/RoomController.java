@@ -37,8 +37,7 @@ public class RoomController extends Controller {
 
         QueueFactory.getDefaultQueue().add(Builder.withUrl("/channel/taskqueue/notifyUserList").param("userListName", userListName).countdownMillis(5000));
 
-        requestScope("userId", user.getUserId());
-        requestScope("token", user.getToken());
+        requestScope("user", user);
         return forward("index.jsp");
     }
 }
