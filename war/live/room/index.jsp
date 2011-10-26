@@ -88,8 +88,13 @@
 			$("#userList").prepend(' \
 					<lh>入室ユーザー</lh>');
 		} else {
-			$("#messageList").prepend('<li><pre>' + convert(data) + '</pre></li>');
+			var allMessage = convert(data);
+			var messageArray = allMessage.split('/username/'); // ユーザ名とメッセージに分割
+			$("#messageList").append('<li><b>' + messageArray[0] + '</b><br />' + messageArray[1] + '</li>');
 		}
+		// メッセージリストの高さを取得し、スクロールトップに指定
+		var e = document.getElementById("messageListDiv");
+		e.scrollTop = e.scrollHeight;
 	}
 
 	// トークンを再取得する。
@@ -103,10 +108,10 @@
 
 
 	function onError() {
-		disconnect();
+		location.href = "/live";
 	}
 
-	window.onunload = function () {
+	window.onbeforeunload = function () {
 		disconnect();
 	}
 

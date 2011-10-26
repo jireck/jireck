@@ -9,6 +9,12 @@ import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.memcache.Memcache;
 
+/**
+ * ユーザーリスト変更通知コントローラー。
+ *
+ * @author jireck
+ *
+ */
 public class NotifyUserListController extends Controller {
 
     private ChatService chatService = new ChatService();

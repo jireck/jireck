@@ -27,19 +27,14 @@ public class ReadLiveService {
         try {
             feed = fetcher.retrieveFeed(new URL(FEED_URL));
         } catch (IllegalArgumentException e) {
-            // TODO 自動生成された catch ブロック
             e.printStackTrace();
         } catch (MalformedURLException e) {
-            // TODO 自動生成された catch ブロック
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO 自動生成された catch ブロック
             e.printStackTrace();
         } catch (FeedException e) {
-            // TODO 自動生成された catch ブロック
             e.printStackTrace();
         } catch (FetcherException e) {
-            // TODO 自動生成された catch ブロック
             e.printStackTrace();
         }
 

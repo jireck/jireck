@@ -19,3 +19,10 @@ div#userListDiv {
 	height: 100px;
 	overflow: auto;
 }
+
+#messageList {
+	list-style-type: none;
+}
+#messageList li {
+	margin-top: 0.5em;
+}

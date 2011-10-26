@@ -1,5 +1,6 @@
 package jireck.service.channel;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -57,16 +58,45 @@ public class ChatService {
      * @return 入室中のユーザーのリスト
      */
     public List<ConnectedUser> chat(Map<String, Object> input, List<ConnectedUser> userList) {
-        ChannelService channelService = ChannelServiceFactory.getChannelService();
         ConnectedUser connectedUser = new ConnectedUser();
         connectedUser.setUserId((String) input.get("userId"));
         int index = userList.indexOf(connectedUser);
         connectedUser = userList.get(index);
 
-        // TODO 文字コード
-//        String msg = URLEncoder.encode("ここが送信文字列","UTF-8");
-//        ChannelMessage cm = new ChannelMessage(client_id , msg);
-//        cs.sendMessage(cm);
+        // 前回の書き込みから3秒以上経過している場合
+        Date currentDate = new Date();
+        if (currentDate.getTime() - connectedUser.getPreSendMessageTime().getTime() > 3000) {
+            sendMessageToAll(userList, connectedUser.getUserName() + "/username/" + (String)input.get("text"));
+            connectedUser.setPreSendMessageTime(currentDate); // 現在日時を設定
+        } else {
+            sendMessage(connectedUser.getUserId(), "システム" + "/username/" + "しばらく時間を置いて書き込んでください。");
+        }
+
+        return userList;
+    }
+
+    /**
+     * 送信対象ユーザー全員にシステムからのメッセージを送信。
+     *
+     * @param userList 送信対象ユーザーリスト
+     * @param message メッセージ
+     * @return ユーザーリスト
+     */
+    public List<ConnectedUser> sendSystemMessage(List<ConnectedUser> userList, String message) {
+        sendMessageToAll(userList, "システム" + "/username/" + message);
+        return userList;
+    }
+
+    /**
+     * 送信対象ユーザー全員にメッセージを送信。
+     * <p>
+     * 対象ユーザーが存在しなかった場合は、リストから削除される可能性有り。
+     * </p>
+     *
+     * @param userList 送信対象ユーザーリスト
+     * @param message メッセージ
+     */
+    private void sendMessageToAll(List<ConnectedUser> userList, String message) {
 
         // リストの中身を削除する処理はIteratorを使う必要がある？
         for (Iterator<ConnectedUser> iterator = userList.iterator(); iterator.hasNext();) {
@@ -74,15 +104,41 @@ public class ChatService {
 
             // ChannelFailureExceptionの対処 GAEにdeployすると発生する可能性があるらしい
             try {
-                channelService.sendMessage(new ChannelMessage(user.getUserId(), connectedUser.getUserName() + ">" + (String)input.get("text")));
+                sendMessage(user.getUserId(), message);
             } catch (ChannelFailureException e) {
                 iterator.remove(); // TODO 削除処理は分割する？
                 // TODO ログ出力
                 throw e;
             }
         }
-        return userList;
     }
+
+    /**
+     * 送信対象ユーザーにメッセージを送信。
+     * <p>
+     * 対象ユーザーが存在しなかった場合は例外が出る可能性有り。
+     * </p>
+     *
+     * @param userId 送信対象ユーザー ID
+     * @param message メッセージ
+     */
+    private void sendMessage(String userId, String message) {
+        ChannelService channelService = ChannelServiceFactory.getChannelService();
+
+        // TODO 文字コード
+        //      String msg = URLEncoder.encode("ここが送信文字列","UTF-8");
+        //      ChannelMessage cm = new ChannelMessage(client_id , msg);
+        //      cs.sendMessage(cm);
+            // ChannelFailureExceptionの対処 GAEにdeployすると発生する可能性があるらしい
+        try {
+            channelService.sendMessage(new ChannelMessage(userId, message));
+        } catch (ChannelFailureException e) {
+            // TODO ログ出力
+            throw e;
+        }
+    }
+
+
 
     /**
      * ユーザーの接続チェック.
@@ -100,6 +156,11 @@ public class ChatService {
         return resultList;
     }
 
+    /**
+     * ユーザーリストを全ユーザーに通知する。
+     *
+     * @param userList
+     */
     public void notifyUserList(List<ConnectedUser> userList) {
         ChannelService channelService = ChannelServiceFactory.getChannelService();
         StringBuilder nameCSV = new StringBuilder();

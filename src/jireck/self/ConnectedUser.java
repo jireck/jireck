@@ -1,7 +1,14 @@
 package jireck.self;
 
 import java.io.Serializable;
+import java.util.Date;
 
+/**
+ * 接続ユーザー。
+ *
+ * @author jireck
+ *
+ */
 public class ConnectedUser implements Serializable {
 
     /**
@@ -28,6 +35,11 @@ public class ConnectedUser implements Serializable {
      * タイムカウント.
      */
     private int timeCount = 0;
+
+    /**
+     * 前回のメッセージ送信時間
+     */
+    private Date preSendMessageTime = new Date();
 
     /**
      * タイムカウントをインクリメントする.
@@ -108,6 +120,22 @@ public class ConnectedUser implements Serializable {
     public boolean equals(Object obj) {
         ConnectedUser user = (ConnectedUser)obj;
         return userId == null ? false : userId.equals(user.getUserId());
+    }
+
+    /**
+     * 前回のメッセージ送信時間を取得します。
+     * @return 前回のメッセージ送信時間
+     */
+    public Date getPreSendMessageTime() {
+        return preSendMessageTime;
+    }
+
+    /**
+     * 前回のメッセージ送信時間を設定します。
+     * @param preSendMessageTime 前回のメッセージ送信時間
+     */
+    public void setPreSendMessageTime(Date preSendMessageTime) {
+        this.preSendMessageTime = preSendMessageTime;
     }
 
 }

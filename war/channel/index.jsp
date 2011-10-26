@@ -10,5 +10,9 @@
 
 <button onclick="chatIn('', '')">サンプルチャットルームへ入室</button>
 
+<br />
+<br />
+<a href="/communication/jirecktube">jirecktube</a>
+
 </body>
 </html>

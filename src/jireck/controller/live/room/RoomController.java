@@ -20,6 +20,7 @@ public class RoomController extends Controller {
 
     @Override
     public Navigation run() throws Exception {
+        // 入室・チャット開始
         ConnectedUser user = chatService.start(new RequestMap(request));
 
         // ユーザーリスト名
@@ -27,10 +28,16 @@ public class RoomController extends Controller {
 
         @SuppressWarnings("unchecked")
         List<ConnectedUser> userList = (List<ConnectedUser>) Memcache.get(userListName);
+
+        // ユーザーリストが存在しない場合は生成する
         if (userList == null) {
             userList = new ArrayList<ConnectedUser>();
         }
 
+        // 入室メッセージ送信
+        chatService.sendSystemMessage(userList, user.getUserName() + "さんが入室されました。");
+
+        // ユーザーリストに追加
         userList.add(user);
 
         Memcache.put(userListName, userList);
