@@ -8,11 +8,9 @@
 </head>
 <body>
 
-<button onclick="chatIn('', '')">サンプルチャットルームへ入室</button>
-
 <br />
 <br />
-<a href="/communication/jirecktube">jirecktube</a>
+<a href="/communication/mintube">皆でyoutube（未完成）</a>
 
 </body>
 </html>

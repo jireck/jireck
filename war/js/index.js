@@ -1,10 +1,10 @@
-var A = 5;
-
-function plusc(A) {
-	return function pluscc(B) {
-		return A+B
-	};
-}
+//var A = 5;
+//
+//function plusc(A) {
+//	return function pluscc(B) {
+//		return A+B
+//	};
+//}
 //
 //function test(){
 ////	var plus1 = plusc(1);
@@ -23,10 +23,10 @@ function plusc(A) {
 //
 //}
 
+/*
 function easing(time, from, distance, duration){
   return distance * time / duration + from;
 }
-
 function test(){
 	var begin = new Date() - 0;
 	var element = document.getElementById('animation');
@@ -43,25 +43,25 @@ function test(){
 		element.style.top = current + 'px';
 		element.style.left = current + 'px';
 	}, 10); // 10ms置きに実行
-	test2();
+	animation();
+}
+*/
+
+window.onload = function () {
+	animation();
 }
 
-function test2() {
-	$("#animation2").animate({
-            width : 180,
-            height : 120,
-			left : 500
-        },
-        500);
 
-	$("#Jireck").animate({
+function animation() {
+	$("#inman").animate({
 			top : 200,
 			left : 200
         },
-        500);
-	$("#Lab").animate({
-			top : 200,
-			left : 380
-        },
-        500);
+        1000);
+
+	$("#inman").animate({
+		top : -100,
+		left : 3000
+    },
+    1000);
 }

@@ -34,8 +34,45 @@ html, body {
 	font-size: 12px;
 }
 
-div#subnav {
-	position:				absolute;
-	right:					0px;
-	top:					0px;
+/*-- mainNavi --*/
+ul#mainNavi{
+	clear: both;
+	margin: 0px 0px 5px 0px;
+	padding: 0px 0px 5px 0px;
+	display: inline-block;
+}
+ul#mainNavi li{
+	float: left;
+	width: 150px;
+	padding: 0;
+	margin: 0;
+	border-right: 1px dotted #AAAAAA;
+	text-align: center;
+	list-style-type: none;
+	font-size: 90%;
+}
+ul#mainNavi li a{
+	display: block;
+	padding: 5px 0;
+}
+ul#mainNavi li a:hover{
+	background-color: #D9D9FF;
+}
+ul#mainNavi li.mainNavi01{
+	border-left: 1px dotted #AAAAAA;
+}
+/*clearfix*/
+ul#mainNavi:after{
+	display: block;
+	clear: both;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
+	content: ".";
+	font-size: 0.1em;
+}
+
+div#logo{
+	padding-top: 6px;
+	padding-bottom: 3px;
 }

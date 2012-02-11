@@ -9,10 +9,12 @@
 <body>
 	HTML5対応ブラウザをご使用ください。<br />
 	<p><a href="sample4">インマンのくぐっ天国</a></p>
-	<hr />
+
+<%--
 	<p>SAMPLE</p>
 	<p><a href="sample1">SAMPLE1</a></p>
 	<p><a href="sample2">SAMPLE2</a></p>
 	<p><a href="sample3">SAMPLE3</a></p>
+--%>
 </body>
 </html>
