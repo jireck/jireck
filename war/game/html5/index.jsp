@@ -9,6 +9,8 @@
 <body>
 	HTML5対応ブラウザをご使用ください。<br />
 	<p><a href="sample4">インマンのくぐっ天国</a></p>
+	<hr />
+	<p><a href="sample5">enchant.js Sample</a></p>
 
 <%--
 	<p>SAMPLE</p>

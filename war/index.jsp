@@ -7,6 +7,7 @@
 <title>Jireck's Lab</title>
 <script language="JavaScript" src="/js/index.js"></script>
 <script language="JavaScript" src="/js/jquery-1.5.2.min.js"></script>
+<script language="JavaScript" src="/js/jquery.easing.1.3.js"></script>
 </head>
 <body>
 	<h2>TOP</h2>
@@ -18,7 +19,7 @@
 	<div id="animation2" style="position:absolute;top:250px;left:350px;height:30px;width:30px;background:#000;">
 	</div>
 --%>
-	<span id="inman" style="position:absolute;top:-100px;left:-100px;"><img src="/img/game/inmanRight1.png" /></span>
+	<span id="inman" style="position:absolute;top:-100px;left:300px;"><img src="/img/game/inmanRight1.png" /></span>
 
 </body>
 </html>

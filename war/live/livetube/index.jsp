@@ -30,7 +30,7 @@
 						<a href="http://livetube.cc/${entry.author}" title="${f:h(entry.author)}">${f:h(entry.author)}</a>
 					</div>
 				</td>
-				<td>
+				<td id="title_${f:h(entry.title)}">
 					<div class="width500">
 						<a href="${entry.link}" title="${f:h(entry.title)}">${f:h(entry.title)}</a>
 					</div>
