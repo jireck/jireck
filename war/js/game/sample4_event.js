@@ -1,4 +1,5 @@
 
+
 //キーボードイベント処理
 window.onkeydown = function(event) {
 	//console.log(event.keyCode);
@@ -49,6 +50,12 @@ window.onkeyup = function(event) {
 
 // ゲームスタート
 function start() {
+
+	// ゲームID取得
+	$.get("sample4GameStart", function (data) {
+		gameId = data;
+	});
+
 	startTime = new Date();
 	baseX = canvas.width / 2;
 	kuguriPoint = 0;
@@ -107,7 +114,6 @@ $(document).keypress(function(event) {
 			clearFlag = false;
 			context.font = "bold 26px 'arial black'";
 			context.fillStyle = "rgb(0, 0, 200)";
-			context.fillText("登録されました。", canvas.width / 2, 100);
 			context.fillText("RESTART:ENTER KEY", canvas.width / 2, 150);
 			finalize();
 			return;
@@ -137,8 +143,15 @@ function sendScore() {
 	var map = new Object();
 	map["score"] = score;
 	map["name"] = clearName;
-	$.post(url, map);
-	setTimeout(loadRanking, 1000);
+	map["gameId"] = gameId;
+	$.post(url, map, function (data) {
+		if (data !== 'ERROR') {
+			setTimeout(loadRanking, 1000);
+			context.fillText("登録されました。", canvas.width / 2, 100);
+		} else {
+			context.fillText("登録エラー（タイムアウト）", canvas.width / 2, 100);
+		}
+	});
 }
 function loadRanking() {
 	$("#ranking").load("sample4 #ranking");
